@@ -6,8 +6,6 @@
 import os
 import discord
 import random
-import numpy as np
-import pandas as pd
 from dotenv import load_dotenv
 from discord.ext import commands
 
@@ -52,13 +50,14 @@ async def on_message(ctx): #Blurt random wisdom on_message is
 async def simple_poll(ctx, question, *options: str): #*options: str, holding this back just in case question doesn't work
     print(question)
     print(options)
-    reactions = ['dart']
 
     counter = 1
-    for x in options:
-        await ctx.send(f'Option {counter}: {x}')
-        counter = counter + 1
 
+    for x in options:
+        message = await ctx.send(f'Option {counter}: {x}')
+        await message.add_reaction('\U0001F44D')
+        await message.add_reaction('\U0001F44E')
+        counter = counter + 1
 
 #    await ctx.send(question)
 #     else:
